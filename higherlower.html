@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Higher Lower Game</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h3 class="text-center">Higher Lower Game</h3>
+        <p class="about">About: This is a higher-lower game. Here, you will be presented with two famous individuals,
+            and your task is
+            to guess
+            which person has the greater number of followers. If you believe that the first person has more followers,
+            enter '1' in
+            the input box. If you think the second person has a greater number of followers compared to the first
+            person, enter '2'
+            in the input box. </p>
+        <h4>
+            Let's begin!
+            <p>Try to get at least 8.</p>
+        </h4>
+        <p style="margin-bottom: 10px;margin-top: 10px;" id="user_score">Your score : <span id="total_score_elem"
+                class="font-weight-bolder">0</span> </p>
+        <div id="data_show">
+            <div id="data_of_person_1" class="border p-2 mb-2"></div>
+            <h5>VS</h5>
+            <div id="data_of_person_2" class="border p-2 mt-2"></div>
+            <form class="d-flex mt-3">
+                <input type="number" id="user_input_number" class="w-75" min="1" max="2" required>
+                <button type="submit" id="submit_data" class="w-25 btn btn-outline-info">Submit</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const data_of_person_1 = document.getElementById('data_of_person_1');
+            const data_of_person_2 = document.getElementById('data_of_person_2');
+            const submit_data_button = document.getElementById('submit_data');
+            const total_score_elem = document.getElementById('total_score_elem');
+            const data_show = document.getElementById('data_show');
+            let score = 0;
+            total_score_elem.textContent = score;
+
+            // Fetch user data
+            const fetchUsers = await axios.get('/user.json');
+            const all_users = fetchUsers.data;
+            let remaining_users = [...all_users]; // Copy of all_users
+
+            function getRandomUser(excludeIndex) {
+                let randomIndex = Math.floor(Math.random() * remaining_users.length);
+                while (randomIndex === excludeIndex) {
+                    randomIndex = Math.floor(Math.random() * remaining_users.length);
+                }
+                return randomIndex;
+            }
+
+            function generateUserDataHTML(user) {
+                return `
+                    ${user.name},
+                    a ${user.description},
+                    from ${user.live}
+                `;
+            }
+
+            function displayUserData(userIndex, userDataElement) {
+                const user = remaining_users[userIndex];
+                const userHTML = generateUserDataHTML(user);
+                userDataElement.innerHTML = userHTML;
+            }
+
+            function compareTwoCelebrityFollowerCount(guess, user1Index, user2Index) {
+                const user1_follower_count = remaining_users[user1Index].follower_count;
+                const user2_follower_count = remaining_users[user2Index].follower_count;
+                if (user1_follower_count > user2_follower_count) {
+                    return guess === '1';
+                } else {
+                    return guess === '2';
+                }
+            }
+
+            submit_data_button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const input_value = document.getElementById('user_input_number').value;
+
+                if (remaining_users.length < 2) {
+                    console.log("Not enough users left.");
+                    submit_data_button.disabled = true;
+                    return;
+                }
+
+                const compare_status = compareTwoCelebrityFollowerCount(input_value, random_user_1, random_user_2);
+
+                if (compare_status) {
+                    score += 1;
+                    console.log("Correct guess!");
+
+                    // Move second person as the first
+                    random_user_1 = random_user_2;
+
+                    if (remaining_users.length === 2) {
+                        // If only two users left, set the second person as the last remaining user
+                        random_user_2 = 1 - random_user_1;
+                    } else {
+                        // Replace the second person with another person from the list
+                        random_user_2 = getRandomUser(random_user_1);
+                    }
+
+                    // Remove the first person from the list
+                    remaining_users.splice(random_user_1, 1);
+                } else {
+                    data_show.innerHTML = `
+                        <div>
+                            <p>Game Over</p>
+                            <p>Your total score is ${score}</p>
+                        </div>
+                    `;
+                    // Disable the submit button and display game over message
+                    submit_data_button.disabled = true;
+                }
+
+
+                // Update the score and display the new user data
+                total_score_elem.textContent = score;
+                displayUserData(random_user_1, data_of_person_1);
+                displayUserData(random_user_2, data_of_person_2);
+                document.getElementById('user_input_number').value = '';
+            });
+
+            let random_user_1 = getRandomUser();
+            let random_user_2 = getRandomUser(random_user_1);
+
+            displayUserData(random_user_1, data_of_person_1);
+            displayUserData(random_user_2, data_of_person_2);
+        });
+    </script>
+</body>
+
+</html>
