@@ -47,7 +47,7 @@
             total_score_elem.textContent = score;
 
             // Fetch user data
-            const fetchUsers = await axios.get('/user.json');
+            const fetchUsers = await axios.get('./user.json');
             const all_users = fetchUsers.data;
             let remaining_users = [...all_users]; // Copy of all_users
 

@@ -1,0 +1,314 @@
+[
+    {
+        "name": "Cristiano Ronaldo",
+        "live": "Portugal",
+        "description": "Football Player",
+        "follower_count": 322
+    },
+    {
+        "name": "Dwayne Johnson",
+        "live": "USA",
+        "description": "Actor",
+        "follower_count": 252
+    },
+    {
+        "name": "Beyoncé",
+        "live": "USA",
+        "description": "Singer",
+        "follower_count": 165
+    },
+    {
+        "name": "Lionel Messi",
+        "live": "Argentina",
+        "description": "Football Player",
+        "follower_count": 229
+    },
+    {
+        "name": "Taylor Swift",
+        "live": "USA",
+        "description": "Singer",
+        "follower_count": 153
+    },
+    {
+        "name": "Kylie Jenner",
+        "live": "USA",
+        "description": "Businesswoman",
+        "follower_count": 251
+    },
+    {
+        "name": "Virat Kohli",
+        "live": "India",
+        "description": "Cricketer",
+        "follower_count": 113
+    },
+    {
+        "name": "Selena Gomez",
+        "live": "USA",
+        "description": "Singer",
+        "follower_count": 226
+    },
+    {
+        "name": "Roger Federer",
+        "live": "Switzerland",
+        "description": "Tennis Player",
+        "follower_count": 101
+    },
+    {
+        "name": "Neymar Jr.",
+        "live": "Brazil",
+        "description": "Football Player",
+        "follower_count": 158
+    },
+    {
+        "name": "Ellen DeGeneres",
+        "live": "USA",
+        "description": "TV Host",
+        "follower_count": 92
+    },
+    {
+        "name": "Shakira",
+        "live": "Colombia",
+        "description": "Singer",
+        "follower_count": 158
+    },
+    {
+        "name": "LeBron James",
+        "live": "USA",
+        "description": "Basketball Player",
+        "follower_count": 95
+    },
+    {
+        "name": "Emma Watson",
+        "live": "United Kingdom",
+        "description": "Actress",
+        "follower_count": 104
+    },
+    {
+        "name": "Kim Kardashian",
+        "live": "USA",
+        "description": "TV Personality",
+        "follower_count": 253
+    },
+    {
+        "name": "Shah Rukh Khan",
+        "live": "India",
+        "description": "Actor",
+        "follower_count": 97
+    },
+    {
+        "name": "Adele",
+        "live": "United Kingdom",
+        "description": "Singer",
+        "follower_count": 89
+    },
+    {
+        "name": "Usain Bolt",
+        "live": "Jamaica",
+        "description": "Sprinter",
+        "follower_count": 20
+    },
+    {
+        "name": "Rihanna",
+        "live": "Barbados",
+        "description": "Singer",
+        "follower_count": 120
+    },
+    {
+        "name": "Angelina Jolie",
+        "live": "USA",
+        "description": "Actress",
+        "follower_count": 175
+    },
+    {
+        "name": "David Beckham",
+        "live": "England",
+        "description": "Football Player",
+        "follower_count": 169
+    },
+    {
+        "name": "Oprah Winfrey",
+        "live": "USA",
+        "description": "TV Personality",
+        "follower_count": 191
+    },
+    {
+        "name": "Kanye West",
+        "live": "USA",
+        "description": "Rapper",
+        "follower_count": 135
+    },
+    {
+        "name": "Megan Fox",
+        "live": "USA",
+        "description": "Actress",
+        "follower_count": 126
+    },
+    {
+        "name": "Eminem",
+        "live": "USA",
+        "description": "Rapper",
+        "follower_count": 155
+    },
+    {
+        "name": "Ariana Grande",
+        "live": "USA",
+        "description": "Singer",
+        "follower_count": 198
+    },
+    {
+        "name": "Brad Pitt",
+        "live": "USA",
+        "description": "Actor",
+        "follower_count": 137
+    },
+    {
+        "name": "Jennifer Lopez",
+        "live": "USA",
+        "description": "Singer",
+        "follower_count": 212
+    },
+    {
+        "name": "Leonardo DiCaprio",
+        "live": "USA",
+        "description": "Actor",
+        "follower_count": 145
+    },
+    {
+        "name": "Katy Perry",
+        "live": "USA",
+        "description": "Singer",
+        "follower_count": 234
+    },
+    {
+        "name": "Chris Hemsworth",
+        "live": "Australia",
+        "description": "Actor",
+        "follower_count": 120
+    },
+    {
+        "name": "Madonna",
+        "live": "USA",
+        "description": "Singer",
+        "follower_count": 180
+    },
+    {
+        "name": "Tom Cruise",
+        "live": "USA",
+        "description": "Actor",
+        "follower_count": 163
+    },
+    {
+        "name": "Demi Lovato",
+        "live": "USA",
+        "description": "Singer",
+        "follower_count": 102
+    },
+    {
+        "name": "Sachin Tendulkar",
+        "live": "India",
+        "description": "Cricketer",
+        "follower_count": 115
+    },
+    {
+        "name": "Billie Eilish",
+        "live": "USA",
+        "description": "Singer",
+        "follower_count": 187
+    },
+    {
+        "name": "Johnny Depp",
+        "live": "USA",
+        "description": "Actor",
+        "follower_count": 128
+    },
+    {
+        "name": "Hugh Jackman",
+        "live": "Australia",
+        "description": "Actor",
+        "follower_count": 115
+    },
+    {
+        "name": "Gal Gadot",
+        "live": "Israel",
+        "description": "Actress",
+        "follower_count": 126
+    },
+    {
+        "name": "Robert Downey Jr.",
+        "live": "USA",
+        "description": "Actor",
+        "follower_count": 142
+    },
+    {
+        "name": "Ryan Reynolds",
+        "live": "Canada",
+        "description": "Actor",
+        "follower_count": 160
+    },
+    {
+        "name": "Michelle Obama",
+        "live": "USA",
+        "description": "Former First Lady",
+        "follower_count": 158
+    },
+    {
+        "name": "Miley Cyrus",
+        "live": "USA",
+        "description": "Singer",
+        "follower_count": 169
+    },
+    {
+        "name": "Steve Jobs",
+        "live": "USA",
+        "description": "Businessman",
+        "follower_count": 143
+    },
+    {
+        "name": "Stephen Curry",
+        "live": "USA",
+        "description": "Basketball Player",
+        "follower_count": 101
+    },
+    {
+        "name": "J.K. Rowling",
+        "live": "UK",
+        "description": "Author",
+        "follower_count": 112
+    },
+    {
+        "name": "Narendra Modi",
+        "live": "India",
+        "description": "Prime Minister",
+        "follower_count": 123
+    },
+    {
+        "name": "Mark Zuckerberg",
+        "live": "USA",
+        "description": "Entrepreneur",
+        "follower_count": 198
+    },
+    {
+        "name": "Jeff Bezos",
+        "live": "USA",
+        "description": "Businessman",
+        "follower_count": 185
+    },
+    {
+        "name": "Elon Musk",
+        "live": "USA",
+        "description": "Entrepreneur",
+        "follower_count": 209
+    },
+    {
+        "name": "Tim Cook",
+        "live": "USA",
+        "description": "Businessman",
+        "follower_count": 133
+    },
+    {
+        "name": "Serena Williams",
+        "live": "USA",
+        "description": "Tennis Player",
+        "follower_count": 179
+    }
+]
