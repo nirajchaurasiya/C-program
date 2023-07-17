@@ -20,11 +20,14 @@
 */
 
 #include <stdio.h>
+#include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 void order_latte();
 void order_cappuccino();
 void order_espresso();
+void reFill_ingredients();
 void report(int water, int milk, int coffee, int money);
 void intro();
 // initialize the initial Report
@@ -37,6 +40,15 @@ int cappuccino_water = 50, cappuccino_milk = 75, cappuccino_coffee = 20, cappucc
 // Initialize 5 ruppee note, 10 ruppee note and 20 ruppee note
 int note_5, note_10, note_20, total_note_amount, extra_money, served_user = 0;
 int espresso_water = 60, espresso_milk = 0, espresso_coffee = 25, espresso_cost = 170;
+
+// Initialize the name
+char user_name[30];
+char lower_username[30];
+char file_name[30];
+char buffer[100];
+char last_order[100];
+// Initialize FILE
+FILE *fp;
 int main()
 {
     // initialize choice
@@ -53,12 +65,69 @@ int main()
     printf("  //////    ///////   //       //       //////// ////////  \n");
     printf("\nHello user!\n");
     printf("--------------------------------------------------------------------------------\n");
+
+    printf("Enter your name: ");
+    scanf("%s", user_name);
+
+    for (int i = 0; i < strlen(user_name); i++)
+    {
+        lower_username[i] = tolower(user_name[i]);
+    }
+    lower_username[strlen(user_name)] = '\0'; // Add null-terminator at the end
+
+    if (strcmp(lower_username, "") != 0)
+    {
+        sprintf(file_name, "%s.txt", lower_username);
+
+        if (access(file_name, F_OK) != -1)
+        {
+            fp = fopen(file_name, "r");
+            while (fgets(buffer, sizeof(buffer), fp) != NULL)
+            {
+                strcpy(last_order, buffer); // Copy the current line to last_order
+            }
+            fclose(fp);
+
+            if (strlen(last_order) > 0)
+            {
+                printf("Hello, %s\n", user_name);
+                printf("Welcome back!\n");
+                printf("You ordered last time: %s", last_order);
+                printf("What do you want today?\n");
+            }
+            else
+            {
+                printf("Hello, %s\n", user_name);
+                printf("Welcome back!\n");
+                printf("You didn't order anything last time.\n");
+                printf("What do you want today?\n");
+            }
+        }
+        else
+        {
+            fp = fopen(file_name, "w");
+            if (fp != NULL)
+            {
+                printf("Hey, you are new to this machine\n");
+                printf("Okay, I will save your name, so that next time you come, I can show you the recommendations.\n");
+            }
+            else
+            {
+                printf("Error opening the file.\n");
+            }
+        }
+    }
+    else
+    {
+        printf("User name can't be empty.\n");
+    }
+
     while (strcmp(choice, "off") != 0)
     {
         intro();
 
         scanf("%s", choice);
-        if ((strcmp(choice, "latte") != 0) && (strcmp(choice, "cappuccino") != 0) && (strcmp(choice, "espresso") != 0) && (strcmp(choice, "off") != 0) && (strcmp(choice, "report") != 0))
+        if ((strcmp(choice, "latte") != 0) && (strcmp(choice, "cappuccino") != 0) && (strcmp(choice, "espresso") != 0) && (strcmp(choice, "off") != 0) && (strcmp(choice, "report") != 0) && (strcmp(choice, "refill") != 0))
         {
             printf("Invalid choice. Please enter a valid option.\n");
         }
@@ -80,14 +149,22 @@ int main()
         {
             report(water, milk, coffee, money);
         }
+
+        if (strcmp(choice, "refill") == 0)
+        {
+            reFill_ingredients();
+        }
     }
     printf("-----------------------------------------------------\n");
     printf("|     Coffee Machine turned off. Goodbye!            |\n");
     printf("-----------------------------------------------------\n");
+    fclose(fp);
     return 0;
 }
 void order_latte()
 {
+    fp = fopen(file_name, "a+");
+
     printf("--------------------------------------------------------------------------------\n");
     printf("Wait, for we are checking the ingredients if it is enough to make latte coffee for you.\n");
     if (latte_water < water && latte_coffee < coffee || latte_milk < milk)
@@ -112,6 +189,15 @@ void order_latte()
             coffee -= latte_coffee;
             milk -= latte_milk;
             served_user++;
+            if (fp != NULL)
+            {
+                fputs("Latte\n", fp);
+                fclose(fp);
+            }
+            else
+            {
+                printf("Error opening the file.\n");
+            }
         }
         else if (total_note_amount > latte_cost)
         {
@@ -123,6 +209,15 @@ void order_latte()
             coffee -= latte_coffee;
             milk -= latte_milk;
             served_user++;
+            if (fp != NULL)
+            {
+                fputs("Latte\n", fp);
+                fclose(fp);
+            }
+            else
+            {
+                printf("Error opening the file.\n");
+            }
         }
         else
         {
@@ -138,6 +233,16 @@ void order_latte()
 
 void order_cappuccino()
 {
+    fp = fopen(file_name, "a+");
+    if (fp != NULL)
+    {
+        fputs("Cappuccino\n", fp);
+        fclose(fp);
+    }
+    else
+    {
+        printf("Error opening the file.\n");
+    }
     printf("--------------------------------------------------------------------------------\n");
     printf("Wait, for we are checking the ingredients if it is enough to make cappuccino coffee for you.\n");
     if (cappuccino_water < water && cappuccino_coffee < coffee || cappuccino_milk < milk)
@@ -162,6 +267,15 @@ void order_cappuccino()
             coffee -= cappuccino_coffee;
             milk -= cappuccino_milk;
             served_user++;
+            if (fp != NULL)
+            {
+                fputs("Latte\n", fp);
+                fclose(fp);
+            }
+            else
+            {
+                printf("Error opening the file.\n");
+            }
         }
         else if (total_note_amount > cappuccino_cost)
         {
@@ -173,6 +287,15 @@ void order_cappuccino()
             coffee -= cappuccino_coffee;
             milk -= cappuccino_milk;
             served_user++;
+            if (fp != NULL)
+            {
+                fputs("Latte\n", fp);
+                fclose(fp);
+            }
+            else
+            {
+                printf("Error opening the file.\n");
+            }
         }
         else
         {
@@ -188,6 +311,16 @@ void order_cappuccino()
 
 void order_espresso()
 {
+    fp = fopen(file_name, "a+");
+    if (fp != NULL)
+    {
+        fputs("Espresso\n", fp);
+        fclose(fp);
+    }
+    else
+    {
+        printf("Error opening the file.\n");
+    }
     printf("--------------------------------------------------------------------------------\n");
     printf("Wait, for we are checking the ingredients if it is enough to make espresso coffee for you.\n");
     if (espresso_water < water && espresso_coffee < coffee || espresso_milk < milk)
@@ -212,6 +345,15 @@ void order_espresso()
             coffee -= espresso_coffee;
             milk -= espresso_milk;
             served_user++;
+            if (fp != NULL)
+            {
+                fputs("Latte\n", fp);
+                fclose(fp);
+            }
+            else
+            {
+                printf("Error opening the file.\n");
+            }
         }
         else if (total_note_amount > espresso_cost)
         {
@@ -223,6 +365,15 @@ void order_espresso()
             coffee -= espresso_coffee;
             milk -= espresso_milk;
             served_user++;
+            if (fp != NULL)
+            {
+                fputs("Latte\n", fp);
+                fclose(fp);
+            }
+            else
+            {
+                printf("Error opening the file.\n");
+            }
         }
         else
         {
@@ -252,5 +403,85 @@ void intro()
     printf("--------------------------------------------------------------------------------\n");
 
     printf("What would you like to have? (latte/cappuccino/espresso)\n");
-    printf("Enter 'off' to turn off the machine or 'report' to show the report.\n");
+    printf("Enter 'off' to turn off the machine or 'report' to show the report or 'refill' to reFill the ingredients.\n");
+}
+void reFill_ingredients()
+{
+    // printf("%s", file_name);
+    // printf("%s", user_name);
+    // printf("%s", lower_username);
+    int num;
+    int refill_amount;
+    printf("--------------------------------------------------------------------------------\n");
+    printf("Current status:\n");
+    printf("Water = %d\n", water);
+    printf("Milk = %d\n", milk);
+    printf("Coffee = %d\n", coffee);
+    printf("How many ingredients you want to refill? You have 3 options i.e. (water, milk, coffee) to fill\n");
+    scanf("%d", &num);
+    char ingre[10];
+    if (num > 1)
+    {
+        printf("Let! Refill the ingredients from beginning.");
+        for (int i = 0; i < num; i++)
+        {
+            printf("Choose one ingredient name from (milk, water, coffee)\n");
+            scanf("%s", &ingre);
+            if ((strcmp(ingre, "water") == 0))
+            {
+                printf("Enter the refill amount for %s\n", ingre);
+                scanf("%d", &refill_amount);
+                water += refill_amount;
+                printf("%s refilled success\n", ingre);
+            }
+            else if ((strcmp(ingre, "milk") == 0))
+            {
+                printf("Enter the refill amount for %s\n", ingre);
+                scanf("%d", &refill_amount);
+                milk += refill_amount;
+                printf("%s refilled success\n", ingre);
+            }
+            else if ((strcmp(ingre, "coffee") == 0))
+            {
+                printf("Enter the refill amount for %s\n", ingre);
+                scanf("%d", &refill_amount);
+                coffee += refill_amount;
+                printf("%s refilled success\n", ingre);
+            }
+            else
+            {
+                printf("Please enter the valid option from water, milk, and coffee.");
+            }
+        }
+    }
+    else
+    {
+        printf("Choose one ingredient name from (milk, water, coffee)\n");
+        scanf("%s", &ingre);
+        if ((strcmp(ingre, "water") == 0))
+        {
+            printf("Enter the refill amount for %s\n", ingre);
+            scanf("%d", &refill_amount);
+            water += refill_amount;
+            printf("%s refilled success\n", ingre);
+        }
+        else if ((strcmp(ingre, "milk") == 0))
+        {
+            printf("Enter the refill amount for %s\n", ingre);
+            scanf("%d", &refill_amount);
+            milk += refill_amount;
+            printf("%s refilled success\n", ingre);
+        }
+        else if ((strcmp(ingre, "coffee") == 0))
+        {
+            printf("Enter the refill amount for %s\n", ingre);
+            scanf("%d", &refill_amount);
+            coffee += refill_amount;
+            printf("%s refilled success\n", ingre);
+        }
+        else
+        {
+            printf("Please enter the valid option from water, milk, and coffee.\n");
+        }
+    }
 }
