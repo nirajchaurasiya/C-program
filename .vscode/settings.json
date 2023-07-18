@@ -15,6 +15,9 @@
     "*.ASSEMBLE*": "hlasm",
     "*.HLASM*": "hlasm",
     "*.HLA*": "hlasm",
-    "ws2tcpip.h": "c"
-  }
+    "ws2tcpip.h": "c",
+    "svm.h": "c",
+    "stdlib.h": "c"
+  },
+  "C_Cpp.errorSquiggles": "disabled"
 }

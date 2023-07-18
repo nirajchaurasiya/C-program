@@ -420,41 +420,50 @@ void reFill_ingredients()
     printf("How many ingredients you want to refill? You have 3 options i.e. (water, milk, coffee) to fill\n");
     scanf("%d", &num);
     char ingre[10];
-    if (num > 1)
+    int count = 0;
+    if (num > 1 && num != '\0')
     {
-        printf("Let! Refill the ingredients from beginning.");
-        for (int i = 0; i < num; i++)
+        printf("Let! Refill the ingredients from beginning.\n");
+
+        while (strcmp(ingre, "exit") != 0 || count == num)
         {
-            printf("Choose one ingredient name from (milk, water, coffee)\n");
-            scanf("%s", &ingre);
-            if ((strcmp(ingre, "water") == 0))
+            for (int i = 0; i < num; i++)
             {
-                printf("Enter the refill amount for %s\n", ingre);
-                scanf("%d", &refill_amount);
-                water += refill_amount;
-                printf("%s refilled success\n", ingre);
-            }
-            else if ((strcmp(ingre, "milk") == 0))
-            {
-                printf("Enter the refill amount for %s\n", ingre);
-                scanf("%d", &refill_amount);
-                milk += refill_amount;
-                printf("%s refilled success\n", ingre);
-            }
-            else if ((strcmp(ingre, "coffee") == 0))
-            {
-                printf("Enter the refill amount for %s\n", ingre);
-                scanf("%d", &refill_amount);
-                coffee += refill_amount;
-                printf("%s refilled success\n", ingre);
-            }
-            else
-            {
-                printf("Please enter the valid option from water, milk, and coffee.");
+                printf("Choose one ingredient name from (milk, water, coffee) or enter exit to exit the refill mode\n");
+                scanf("%s", &ingre);
+                if ((strcmp(ingre, "water") == 0))
+                {
+                    printf("Enter the refill amount for %s\n", ingre);
+                    scanf("%d", &refill_amount);
+                    water += refill_amount;
+                    printf("%s refilled success\n", ingre);
+                    count++;
+                }
+                else if ((strcmp(ingre, "milk") == 0))
+                {
+                    printf("Enter the refill amount for %s\n", ingre);
+                    scanf("%d", &refill_amount);
+                    milk += refill_amount;
+                    printf("%s refilled success\n", ingre);
+                    count++;
+                }
+                else if ((strcmp(ingre, "coffee") == 0))
+                {
+                    printf("Enter the refill amount for %s\n", ingre);
+                    scanf("%d", &refill_amount);
+                    coffee += refill_amount;
+                    printf("%s refilled success\n", ingre);
+                    count++;
+                }
+                else if (strcmp(ingre, "exit") != 0)
+                {
+                    printf("Please enter the valid option from water, milk, and coffee.\n");
+                }
+                break;
             }
         }
     }
-    else
+    else if (num == 1 && num != '\0')
     {
         printf("Choose one ingredient name from (milk, water, coffee)\n");
         scanf("%s", &ingre);
@@ -483,5 +492,13 @@ void reFill_ingredients()
         {
             printf("Please enter the valid option from water, milk, and coffee.\n");
         }
+    }
+    if (num == 0 && num != '\0')
+    {
+        printf("Okay! Refill later\n");
+    }
+    if (num == '\0')
+    {
+        printf("Please enter in number; eg: 1,2,3\n");
     }
 }
