@@ -13,8 +13,6 @@
     If the ingredients are available but the entered money is less than the actual cost, it simply refunds the entered money back to the customer.
     On the other hand, the system setting includes generating a report of the ingredients, selling coffee, and turning off the machine.
     If the user enters "off", the machine will be deactivated. Similarly, if the user enters "report", it will show the current reports of the machine's status.
-*/
-/*
     Trademark: ™ Niraj Chaurasiya
     License: This project is licensed under the MIT License. See the LICENSE file for more details.
 */
@@ -30,6 +28,7 @@ void order_espresso();
 void reFill_ingredients();
 void report(int water, int milk, int coffee, int money);
 void intro();
+void main_intro();
 // initialize the initial Report
 int water = 100, milk = 80, coffee = 200, money = 0;
 // initialize the ingredients and cost of the latte
@@ -54,19 +53,7 @@ int main()
     // initialize choice
     char choice[15];
 
-    system("cls");
-    printf("   ******    *******   ******** ******** ******** ********\n");
-    printf("  **////**  **/////** /**///// /**///// /**///// /**//// \n");
-    printf(" **    //  **     //**/**      /**      /**      /**      \n");
-    printf("/**       /**      /**/******* /******* /******* /******* \n");
-    printf("/**       /**      /**/**////  /**////  /**////  /**////  \n");
-    printf("//**    **//**     ** /**      /**      /**      /**      \n");
-    printf(" //******  //*******  /**      /**      /********/********\n");
-    printf("  //////    ///////   //       //       //////// ////////  \n");
-    printf("\nHello user!\n");
-    printf("--------------------------------------------------------------------------------\n");
-
-    printf("Enter your name: ");
+    main_intro();
     scanf("%s", user_name);
 
     for (int i = 0; i < strlen(user_name); i++)
@@ -149,7 +136,6 @@ int main()
         {
             report(water, milk, coffee, money);
         }
-
         if (strcmp(choice, "refill") == 0)
         {
             reFill_ingredients();
@@ -161,6 +147,24 @@ int main()
     fclose(fp);
     return 0;
 }
+
+void main_intro()
+{
+    system("cls");
+    printf("   ******    *******   ******** ******** ******** ********\n");
+    printf("  **////**  **/////** /**///// /**///// /**///// /**//// \n");
+    printf(" **    //  **     //**/**      /**      /**      /**      \n");
+    printf("/**       /**      /**/******* /******* /******* /******* \n");
+    printf("/**       /**      /**/**////  /**////  /**////  /**////  \n");
+    printf("//**    **//**     ** /**      /**      /**      /**      \n");
+    printf(" //******  //*******  /**      /**      /********/********\n");
+    printf("  //////    ///////   //       //       //////// ////////  \n");
+    printf("\nHello user!\n");
+    printf("--------------------------------------------------------------------------------\n");
+
+    printf("Enter your name: ");
+}
+
 void order_latte()
 {
     fp = fopen(file_name, "a+");
