@@ -18,7 +18,17 @@
     "ws2tcpip.h": "c",
     "svm.h": "c",
     "stdlib.h": "c",
-    "string.h": "c"
+    "string.h": "c",
+    "windows.ui.h": "c",
+    "windows.h": "c",
+    "stdio.h": "c",
+    "portaudio.h": "c",
+    "sapi.h": "c",
+    "commctrl.h": "c",
+    "cstdlib": "c",
+    "system_error": "c",
+    "typeinfo": "c",
+    "conio.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }

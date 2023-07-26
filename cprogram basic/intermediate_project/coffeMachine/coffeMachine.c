@@ -22,6 +22,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <windows.h>
 void order_latte();
 void order_cappuccino();
 void order_espresso();
@@ -150,6 +151,7 @@ int main()
 
 void main_intro()
 {
+    Beep(750, 800);
     system("cls");
     printf("   ******    *******   ******** ******** ******** ********\n");
     printf("  **////**  **/////** /**///// /**///// /**///// /**//// \n");
@@ -187,6 +189,8 @@ void order_latte()
         if (total_note_amount == latte_cost)
         {
             printf("Thanks for your patience.\n");
+            Beep(2000, 1800);
+            MessageBox(NULL, "Here is your coffee", "Coffee Time", MB_OK);
             printf("Here is your coffee.\n");
             money += latte_cost;
             water -= latte_water;
@@ -206,6 +210,8 @@ void order_latte()
         else if (total_note_amount > latte_cost)
         {
             printf("Thanks for your patience.\n");
+            Beep(2000, 1800);
+            MessageBox(NULL, "Here is your coffee", "Coffee Time", MB_OK);
             extra_money = total_note_amount - latte_cost;
             printf("Here is your coffee and extra NRs %d money\n", extra_money);
             money += latte_cost;
@@ -265,6 +271,7 @@ void order_cappuccino()
         if (total_note_amount == cappuccino_cost)
         {
             printf("Thanks for your patience.\n");
+            Beep(2000, 1800);
             printf("Here is your coffee.\n");
             money += cappuccino_cost;
             water -= cappuccino_water;
@@ -284,6 +291,7 @@ void order_cappuccino()
         else if (total_note_amount > cappuccino_cost)
         {
             printf("Thanks for your patience.\n");
+            Beep(2000, 1800);
             extra_money = total_note_amount - cappuccino_cost;
             printf("Here is your coffee and extra NRs %d money\n", extra_money);
             money += cappuccino_cost;
@@ -343,6 +351,7 @@ void order_espresso()
         if (total_note_amount == espresso_cost)
         {
             printf("Thanks for your patience.\n");
+            Beep(2000, 1800);
             printf("Here is your coffee.\n");
             money += espresso_cost;
             water -= espresso_water;
@@ -362,6 +371,7 @@ void order_espresso()
         else if (total_note_amount > espresso_cost)
         {
             printf("Thanks for your patience.\n");
+            Beep(2000, 1800);
             extra_money = total_note_amount - espresso_cost;
             printf("Here is your coffee and extra NRs %d money\n", extra_money);
             money += espresso_cost;
