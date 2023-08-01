@@ -408,7 +408,7 @@ void report(int water, int milk, int coffee, int money)
     printf("Milk = %d ml\n", milk);
     printf("Coffee = %d gm\n", coffee);
     printf("User served = %d\n", served_user);
-    printf("Money = NRs %d\n", money);
+    printf("Money earned = NRs %d\n", money);
     printf("--------------------------------------------------------------------------------\n");
 }
 
